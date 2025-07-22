@@ -5,7 +5,6 @@
   <title>Murder Mystery Voting</title>
   <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet" />
   <style>
-    /* Background noise texture */
     @keyframes noise {
       0%, 100% { background-position: 0 0; }
       50% { background-position: 100% 100%; }
@@ -24,7 +23,6 @@
       position: relative;
     }
 
-    /* Vignette overlay */
     body::before {
       content: '';
       pointer-events: none;
@@ -42,19 +40,21 @@
       z-index: 2;
     }
 
+    /* Flipped columns: pictures on left, poll on right */
     .left-column {
-      width: 30%;
-      padding: 20px;
-      box-sizing: border-box;
-    }
-
-    .right-column {
-      width: 70%;
+      width: 70%; /* now pictures take 70% */
       display: flex;
       flex-direction: column;
       padding: 20px;
       box-sizing: border-box;
       overflow-y: auto;
+      align-items: center; /* center images container */
+    }
+
+    .right-column {
+      width: 30%; /* poll iframe smaller on right */
+      padding: 20px;
+      box-sizing: border-box;
     }
 
     .qr {
@@ -66,9 +66,11 @@
       border-bottom: 1px solid #660000;
       padding-bottom: 20px;
       text-align: center;
+      width: 100%;
+      max-width: 600px;
+      margin-bottom: 20px;
     }
 
-    /* Eerie glowing flicker on header */
     @keyframes flicker {
       0%, 19%, 21%, 23%, 25%, 54%, 56%, 100% {
         text-shadow:
@@ -108,21 +110,22 @@
       color: #ff4444;
     }
 
+    /* Images container */
     .images {
+      width: 540px; /* 3 images * 160px + 2 gaps * 30px */
       display: flex;
-      justify-content: space-around;
-      align-items: center;
-      padding-top: 20px;
-      overflow-x: auto;
-      gap: 20px;
-      flex-wrap: nowrap;
+      flex-wrap: wrap;
+      gap: 30px;
+      justify-content: center;
+      margin: 0 auto;
+      padding-bottom: 20px;
     }
 
     .person {
+      width: 160px;
       display: flex;
       flex-direction: column;
       align-items: center;
-      min-width: 100px;
       filter: drop-shadow(0 0 10px rgba(255, 0, 0, 0.8));
       transition: filter 0.3s ease;
     }
@@ -133,32 +136,31 @@
     }
 
     .person img {
-      width: 100px;
-      height: 100px;
+      width: 160px;
+      height: 160px;
       object-fit: cover;
-      border-radius: 12px;
-      border: 3px solid #660000;
+      border-radius: 16px;
+      border: 4px solid #660000;
       box-shadow:
-        0 0 8px #cc0000,
-        inset 0 0 10px #550000;
+        0 0 12px #cc0000,
+        inset 0 0 12px #550000;
       transition: transform 0.3s, box-shadow 0.3s;
     }
 
     .person img:hover {
       transform: scale(1.1);
       box-shadow:
-        0 0 25px #ff0000,
-        inset 0 0 15px #ff4444;
+        0 0 30px #ff0000,
+        inset 0 0 20px #ff4444;
     }
 
     .person span {
-      margin-top: 8px;
-      font-size: 16px;
+      margin-top: 10px;
+      font-size: 18px;
       color: #ff6666;
+      font-weight: 700;
       text-align: center;
-      text-shadow:
-        0 0 5px #330000;
-      font-weight: 600;
+      text-shadow: 0 0 5px #330000;
     }
 
     iframe {
@@ -166,21 +168,15 @@
       height: 100%;
       border: none;
       border-radius: 12px;
-      box-shadow:
-        0 0 30px #330000;
+      box-shadow: 0 0 30px #330000;
     }
   </style>
 </head>
 <body>
 
   <div class="container">
+    <!-- Pictures on the LEFT now -->
     <div class="left-column">
-      <iframe 
-        src="https://directpoll.com/r?XDbzPBd3ixYqg8mKZzEAYdhpNkkSGPJIEnGRk9iPv8tS3V"
-        title="Poll">
-      </iframe>
-    </div>
-    <div class="right-column">
       <div class="qr">
         <h2>VOTE HERE</h2>
         <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://directpoll.com/r?XDbzPBd3ixYqg8mKZzEAYdhpNkkSGPJIEnGRk9iPv8tS3V" alt="QR Code" />
@@ -190,30 +186,38 @@
       </div>
       <div class="images">
         <div class="person">
-          <img src="https://via.placeholder.com/100" alt="Austin" />
+          <img src="https://via.placeholder.com/160" alt="Austin" />
           <span>Austin</span>
         </div>
         <div class="person">
-          <img src="https://via.placeholder.com/100" alt="Beau" />
+          <img src="https://via.placeholder.com/160" alt="Beau" />
           <span>Beau</span>
         </div>
         <div class="person">
-          <img src="https://via.placeholder.com/100" alt="Gabby" />
+          <img src="https://via.placeholder.com/160" alt="Gabby" />
           <span>Gabby</span>
         </div>
         <div class="person">
-          <img src="https://via.placeholder.com/100" alt="Margo" />
+          <img src="https://via.placeholder.com/160" alt="Margo" />
           <span>Margo</span>
         </div>
         <div class="person">
-          <img src="https://via.placeholder.com/100" alt="Megan" />
+          <img src="https://via.placeholder.com/160" alt="Megan" />
           <span>Megan</span>
         </div>
         <div class="person">
-          <img src="https://via.placeholder.com/100" alt="Griffin" />
+          <img src="https://via.placeholder.com/160" alt="Griffin" />
           <span>Griffin</span>
         </div>
       </div>
+    </div>
+
+    <!-- Poll iframe on the RIGHT -->
+    <div class="right-column">
+      <iframe 
+        src="https://directpoll.com/r?XDbzPBd3ixYqg8mKZzEAYdhpNkkSGPJIEnGRk9iPv8tS3V"
+        title="Poll">
+      </iframe>
     </div>
   </div>
 
