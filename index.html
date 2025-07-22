@@ -3,7 +3,6 @@
 <head>
   <meta charset="UTF-8" />
   <title>Murder Mystery Voting</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet" />
   <style>
     @keyframes noise {
@@ -20,7 +19,7 @@
       background-repeat: repeat;
       animation: noise 10s infinite alternate;
       color: #fff;
-      overflow: hidden;
+      overflow-x: hidden; /* fixed */
       position: relative;
     }
 
@@ -36,7 +35,7 @@
     .container {
       display: flex;
       flex-direction: row;
-      height: 100vh;
+      flex-wrap: wrap; /* fixes mobile stacking */
       backdrop-filter: brightness(0.75);
       position: relative;
       z-index: 2;
@@ -48,7 +47,6 @@
       flex-direction: column;
       padding: 20px;
       box-sizing: border-box;
-      overflow-y: auto;
       align-items: center;
     }
 
@@ -59,6 +57,7 @@
     }
 
     .qr {
+      flex: 1;
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -98,8 +97,8 @@
 
     .qr a {
       margin-top: 10px;
-      font-size: 22px;       
-      font-weight: 700;      
+      font-size: 22px;
+      font-weight: 700;
       color: #cc3333;
       text-decoration: none;
       text-shadow: 0 0 5px #660000;
@@ -111,17 +110,17 @@
     }
 
     .images {
-      width: 100%;
+      width: 540px;
       display: flex;
       flex-wrap: wrap;
-      gap: 20px;
+      gap: 30px;
       justify-content: center;
       margin: 0 auto;
       padding-bottom: 20px;
     }
 
     .person {
-      width: 140px;
+      width: 160px;
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -135,9 +134,10 @@
     }
 
     .person img {
-      width: 140px;
-      height: 140px;
+      width: 160px;
+      height: 200px; /* taller to prevent head cut-off */
       object-fit: cover;
+      object-position: top; /* ensures head is visible */
       border-radius: 16px;
       border: 4px solid #660000;
       box-shadow:
@@ -155,7 +155,7 @@
 
     .person span {
       margin-top: 10px;
-      font-size: 16px;
+      font-size: 18px;
       color: #ff6666;
       font-weight: 700;
       text-align: center;
@@ -168,13 +168,13 @@
       border: none;
       border-radius: 12px;
       box-shadow: 0 0 30px #330000;
+      min-height: 500px;
     }
 
-    /* 📱 Mobile Responsive */
+    /* MOBILE */
     @media (max-width: 768px) {
       .container {
         flex-direction: column;
-        height: auto;
       }
 
       .left-column,
@@ -183,12 +183,9 @@
         padding: 15px;
       }
 
-      .qr h2 {
-        font-size: 24px;
-      }
-
-      .qr a {
-        font-size: 18px;
+      .images {
+        width: 100%;
+        gap: 20px;
       }
 
       .person {
@@ -197,7 +194,7 @@
 
       .person img {
         width: 120px;
-        height: 120px;
+        height: 160px;
       }
 
       iframe {
@@ -207,9 +204,7 @@
   </style>
 </head>
 <body>
-
   <div class="container">
-    <!-- Pictures on the LEFT -->
     <div class="left-column">
       <div class="qr">
         <h2>VOTE HERE</h2>
@@ -233,11 +228,10 @@
         </div>
         <div class="person">
           <img src="https://thecomedyproject.com/wp-content/uploads/2022/03/tl-2_3164231a98fd65b0d7d6048add7e0c29.jpg" alt="Margo" />
-          
           <span>Margo</span>
         </div>
         <div class="person">
-          <img src="https://img1.wsimg.com/isteam/ip/40a13da8-abeb-4cb1-89cc-a698231e1f8d/MEGAN_DILLON_1851.jpg/:/rs=w:1160,h:772" alt="Megan" />
+          <img src="https://img1.wsimg.com/isteam/ip/40a13da8-abeb-4cb1-89cc-a698231e1f8d/MEGAN_DILLON_1288.jpg" alt="Megan" />
           <span>Megan</span>
         </div>
         <div class="person">
@@ -247,7 +241,6 @@
       </div>
     </div>
 
-    <!-- Poll iframe on the RIGHT -->
     <div class="right-column">
       <iframe 
         src="https://directpoll.com/r?XDbzPBd3ixYqg8mKZzEAYdhpNkkSGPJIEnGRk9iPv8tS3V"
@@ -255,6 +248,5 @@
       </iframe>
     </div>
   </div>
-
 </body>
 </html>
