@@ -26,7 +26,7 @@
     .lost {
       font-size: 48px;
       animation: bloody 4s ease infinite alternate;
-      margin: 10px 0;
+      margin: 0px 0;
       text-align: center;
     }
 
@@ -44,7 +44,7 @@
     .note {
       color: #c8102e;
       font-size: 28px;
-      margin: 10px 0 30px;
+      margin: 0px 0 0px;
       animation: grow 5s ease infinite alternate;
       text-align: center;
     }
@@ -56,14 +56,13 @@
 
     .main-section {
       display: flex;
-      width: 100%;
       max-width: 1200px;
       gap: 20px;
       justify-content: space-between;
     }
 
     .left-side {
-      flex: 0 0 60%;
+      flex: 0 0 40%;
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -76,7 +75,7 @@
       gap: 10px;
       flex-shrink: 1;
       width: 100%;
-      margin-bottom: 20px;
+      margin-bottom: 10px;
     }
 
     .person {
@@ -95,7 +94,7 @@
     }
 
     .person button {
-      margin-top: 5px;
+      margin-top: 0px;
       background-color: transparent;
       border: 1px solid #c8102e;
       color: #fff;
@@ -120,7 +119,8 @@
     .qr h2 {
       font-size: 24px;
       color: #c8102e;
-      margin-bottom: 8px;
+      margin-bottom: 0px;
+      margin-top: -10px;
     }
 
     .qr img {
@@ -138,7 +138,7 @@
     }
 
     .right-side {
-      flex: 0 0 40%;
+      flex: 0 0 50%;
       justify-content: center;
       align-items: center;
     }
@@ -185,6 +185,7 @@
       .qr img {
         width: 200px;
         height: 200px;
+        padding-left: 120px;
       }
 
       .qr h2 {
@@ -196,20 +197,41 @@
       }
 
       .person button {
-        font-size: 14px;
+        font-size: 12px;
       }
     }
   </style>
 </head>
 <body>
   <div class="App">
-    <h1 class="lost">Murder Mystery</h1>
-    <h2 class="note">Who should be the next victim?</h2>
 
     <div class="main-section">
       <!-- LEFT SIDE: 60% -->
       <div class="left-side">
-        <div class="images">
+
+
+        <div class="qr" style="padding-left: 120px;">
+         
+          <h2 style="font-size:50px">VOTE</h2>
+              <h2 class="note">for the victim!</h2>
+          <img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=https://etc.ch/ZWq6" alt="QR Code" style="width: 200px; height: 200px;" />
+         <a href="https://etc.ch/ZWq6" target="_blank" style="font-family: arial;font-size:30px">etc.ch/ZWq6</a>
+          
+          <br>
+          <br>
+        </div>
+      </div>
+
+      <!-- RIGHT SIDE: 40% -->
+      <div class="right-side">
+        <iframe 
+          src="https://directpoll.com/r?XDbzPBd3ixYqg8mKZzEAYdhpNkkSGPJIEnGRk9iPv8tS3V"
+          title="Poll">
+        </iframe>
+      </div>
+    </div>
+  </div>
+          <div class="images">
           <div class="person">
             <img src="https://media.thepit-nyc.com/app/uploads/20250515141926/IMG_9940-Large.jpeg" alt="Beau">
             <button onclick="alert('click on the qr code!')">Beau</button>
@@ -235,24 +257,5 @@
             <button onclick="alert('click on the qr code!')">Austin</button>
           </div>
         </div>
-
-        <div class="qr">
-          <h2 style="font-size:60px">VOTE HERE</h2>
-          <img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=https://etc.ch/ZWq6" alt="QR Code" style="width: 200px; height: 200px;" />
-         <a href="https://etc.ch/ZWq6" target="_blank" style="font-family: arial;font-size:40px">etc.ch/ZWq6</a>
-          <br>
-          <br>
-        </div>
-      </div>
-
-      <!-- RIGHT SIDE: 40% -->
-      <div class="right-side">
-        <iframe 
-          src="https://directpoll.com/r?XDbzPBd3ixYqg8mKZzEAYdhpNkkSGPJIEnGRk9iPv8tS3V"
-          title="Poll">
-        </iframe>
-      </div>
-    </div>
-  </div>
 </body>
 </html>
