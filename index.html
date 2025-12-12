@@ -14,6 +14,7 @@
       margin: 0;
       padding: 0;
       overflow-x: hidden;
+      position: relative;
     }
 
     .App {
@@ -213,16 +214,31 @@
       }
     }
 
+    /* Snowflake styles */
+    .snowflake {
+      position: fixed;
+      top: -10px;
+      background: white;
+      border-radius: 50%;
+      opacity: 0.8;
+      pointer-events: none;
+      z-index: 9999;
+      animation: fall linear infinite;
+    }
+
+    @keyframes fall {
+      0% { transform: translateY(-10px) rotate(0deg); }
+      100% { transform: translateY(100vh) rotate(360deg); }
+    }
   </style>
 </head>
 <body>
   <div class="App">
     <div class="main-section">
-
       <div class="left-side">
         <div class="qr" style="padding-left: 120px;">
           <h2 style="font-size:50px">VOTE</h2>
-          <h2 class="note">for the victim!</h2>
+          <h2 class="note">for Santa!</h2>
           <img src="https://etc.ch/YgyP?qr" alt="QR Code" style="width: 200px; height: 200px;" />
           <a href="https://etc.ch/YgyP?qr" target="_blank" style="font-family: arial;font-size:30px"> https://etc.ch/YgyP
           </a>
@@ -233,7 +249,6 @@
       <div class="right-side">
         <iframe src="https://directpoll.com/r?XDbzPBd3ixYqg8hAC27xM79NhbX8pulkgFitCbArNaLuVx" title="Poll"></iframe>
       </div>
-
     </div>
   </div>
 
@@ -282,7 +297,35 @@
       <button onclick="alert('click on the qr code!')">Austin</button>
     </div>
 
+    <div class="person">
+      <span class="handle">@ocheerios</span>
+      <img src="Rachel.JPG"" alt="Rachel">
+      <button onclick="alert('click on the qr code!')">Rachel</button>
+    </div>
+
   </div>
+
+  <script>
+    // Snowflake generation
+    const snowflakeCount = 50; // Number of snowflakes
+
+    for (let i = 0; i < snowflakeCount; i++) {
+      const snowflake = document.createElement('div');
+      snowflake.classList.add('snowflake');
+
+      // Random size and position
+      const size = Math.random() * 8 + 4; // 4px to 12px
+      snowflake.style.width = `${size}px`;
+      snowflake.style.height = `${size}px`;
+      snowflake.style.left = `${Math.random() * 100}vw`;
+
+      // Random animation duration and delay
+      snowflake.style.animationDuration = `${Math.random() * 5 + 5}s`; // 5-10s
+      snowflake.style.animationDelay = `${Math.random() * 10}s`;
+
+      document.body.appendChild(snowflake);
+    }
+  </script>
 
 </body>
 </html>
